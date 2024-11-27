@@ -2,15 +2,14 @@ export default function InputLabel({
     value,
     className = '',
     children,
+    forInput,
     ...props
 }) {
     return (
         <label
             {...props}
-            className={
-                `block text-sm font-medium text-gray-700 dark:text-gray-300 ` +
-                className
-            }
+            htmlFor={forInput}
+            className={`mb-2 block text-base ` + className}
         >
             {value ? value : children}
         </label>

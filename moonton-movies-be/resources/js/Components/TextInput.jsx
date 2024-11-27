@@ -1,7 +1,17 @@
+import PropTypes from 'prop-types';
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 
-export default forwardRef(function TextInput(
-    { type = 'text', className = '', isFocused = false, ...props },
+const TextInput = forwardRef(function (
+    {
+        type = 'text',
+        defaultValue,
+        className = '',
+        variant = 'primary',
+        isFocused = false,
+        placeholder,
+        isError,
+        ...props
+    },
     ref,
 ) {
     const localRef = useRef(null);
@@ -20,11 +30,33 @@ export default forwardRef(function TextInput(
         <input
             {...props}
             type={type}
-            className={
-                'rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600 ' +
+            className={`bg-form-bg focus:outline-alerange w-full rounded-2xl px-7 ${isError && 'input-error'} input-${variant} ${
                 className
-            }
+            }`}
             ref={localRef}
+            defaultValue={defaultValue}
+            placeholder={placeholder}
         />
     );
 });
+
+// Tambahkan displayName untuk menghilangkan peringatan ESLint
+TextInput.displayName = 'TextInput';
+
+// Deklarasi `propTypes` setelah komponen
+TextInput.propTypes = {
+    type: PropTypes.oneOf(['text', 'email', 'number', 'password', 'file']),
+    name: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    className: PropTypes.string,
+    variant: PropTypes.oneOf(['primary', 'error', 'primary-outline']),
+    autoComplete: PropTypes.string,
+    required: PropTypes.bool,
+    isFocused: PropTypes.bool,
+    handleChange: PropTypes.func,
+    placeholder: PropTypes.string,
+    isError: PropTypes.bool,
+};
+
+export default TextInput;
