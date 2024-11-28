@@ -20,7 +20,7 @@ class MovieTableSeeder extends Seeder
                 'category' => 'Action',
                 'video_url' => 'https://www.youtube.com/embed/tgbNymZ7vqY',
                 'thumbnail' => 'https://i.ytimg.com/vi/tgbNymZ7vqY/hqdefault.jpg',
-                'rating' => 9.3,
+                'rating' => 4.3,
                 'is_featured' => 1
             ],
             [
@@ -29,7 +29,7 @@ class MovieTableSeeder extends Seeder
                 'category' => 'Fantasy',
                 'video_url' => 'https://www.youtube.com/embed/tgbNymZ7vqY',
                 'thumbnail' => 'https://i.ytimg.com/vi/tgbNymZ7vqY/hqdefault.jpg',
-                'rating' => 9.2,
+                'rating' => 4.2,
                 'is_featured' => 0
             ],
             [
@@ -38,7 +38,7 @@ class MovieTableSeeder extends Seeder
                 'category' => 'Action',
                 'video_url' => 'https://www.youtube.com/embed/tgbNymZ7vqY',
                 'thumbnail' => 'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg',
-                'rating' => 9.1,
+                'rating' => 4.1,
                 'is_featured' => 0
             ]
             ];
