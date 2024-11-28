@@ -30,7 +30,7 @@ const TextInput = forwardRef(function (
         <input
             {...props}
             type={type}
-            className={`bg-form-bg focus:outline-alerange w-full rounded-2xl px-7 ${isError && 'input-error'} input-${variant} ${
+            className={`w-full rounded-2xl bg-form-bg px-7 focus:outline-alerange ${isError && 'input-error'} input-${variant} ${
                 className
             }`}
             ref={localRef}
