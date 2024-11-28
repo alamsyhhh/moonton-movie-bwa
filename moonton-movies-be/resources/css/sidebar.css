@@ -1,0 +1,20 @@
+@layer components {
+    .side-link {
+        @apply mb-5 flex w-full items-center gap-3 text-sm font-normal text-black transition-all;
+    }
+
+    .side-link svg {
+        @apply text-[#B7B7B7];
+    }
+    .side-link.active {
+        @apply border-alerange border-r-[3px] font-semibold;
+    }
+
+    .side-link.active svg {
+        @apply text-alerange;
+    }
+
+    input.top-search {
+        @apply border-gray-2 placeholder:text-gray-1 text-gray-1 w-full max-w-[570px] rounded-full border bg-[center_right_20px] bg-center bg-no-repeat px-5 py-[11px] text-base transition-all focus:outline-none focus:ring-2;
+    }
+}
