@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+
 export default function Sidebar() {
     return (
         <>
@@ -9,7 +11,7 @@ export default function Sidebar() {
                     <div className="links mt-[60px] flex h-full flex-col gap-[50px]">
                         {/* Menu */}
                         <div>
-                            <div className="text-gray-1 mb-4 text-sm">Menu</div>
+                            <div className="mb-4 text-sm text-gray-1">Menu</div>
                             <a href="/" className="side-link active">
                                 <svg
                                     width={24}
@@ -81,10 +83,13 @@ export default function Sidebar() {
                         {/* ./Menu */}
                         {/* Others */}
                         <div>
-                            <div className="text-gray-1 side-link mb-4">
+                            <div className="side-link mb-4 text-gray-1">
                                 Others
                             </div>
-                            <a href="pricing.html" className="side-link">
+                            <Link
+                                href={route('prototype.subcriptionPlan')}
+                                className="side-link"
+                            >
                                 <svg
                                     width={24}
                                     height={24}
@@ -99,7 +104,7 @@ export default function Sidebar() {
                                     />
                                 </svg>
                                 Payments
-                            </a>
+                            </Link>
                             <a href="#!" className="side-link">
                                 <svg
                                     width={24}
@@ -162,7 +167,7 @@ export default function Sidebar() {
                                     12 of 30 hari
                                 </div>
                                 <div className="h-[6px] w-full rounded-full bg-[#333333]">
-                                    <div className="bg-alerange h-full w-9/12 rounded-full" />
+                                    <div className="h-full w-9/12 rounded-full bg-alerange" />
                                 </div>
                             </div>
                         </div>
