@@ -4,7 +4,7 @@ import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/react';
 import Flickity from 'react-flickity-component';
 
-export default function Dashboard({auth, featuredMovies, movies}) {
+export default function Dashboard({ auth, featuredMovies, movies }) {
     const flickityOptions = {
         cellAlign: 'left',
         contain: true,
@@ -41,7 +41,9 @@ export default function Dashboard({auth, featuredMovies, movies}) {
                                 />
                             ))
                         ) : (
-                            <div className="text-gray-500">No featured movies available.</div>
+                            <div className="text-gray-500">
+                                No featured movies available.
+                            </div>
                         )}
                     </Flickity>
                 </div>

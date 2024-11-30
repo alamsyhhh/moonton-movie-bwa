@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles; 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -47,4 +49,39 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // public function getIsActiveAttribute()
+    // {
+    //     if ($this->LastActiveUserSubscription) {
+    //         return false;
+    //     }
+    //     $dateNow = Carbon::now();
+    //     $dateExpired = Carbon::create($this->LastActiveUserSubscription->expired_date);
+
+    //     return $dateNow->lessThanOrEqualTo($dateExpired);
+    // }
+
+    public function getIsActiveAttribute()
+    {
+        // Periksa apakah LastActiveUserSubscription ada
+        $activePlan = $this->LastActiveUserSubscription;
+        
+        // Jika LastActiveUserSubscription tidak ada, kembalikan false
+        if (!$activePlan) {
+            return false;
+        }
+
+        // Jika LastActiveUserSubscription ada, lanjutkan dengan perhitungan
+        $dateNow = Carbon::now();
+        $dateExpired = Carbon::create($activePlan->expired_date);
+
+        return $dateNow->lessThanOrEqualTo($dateExpired);
+    }
+
+
+    public function LastActiveUserSubscription(): HasOne
+    {
+        return $this->hasOne(UserSubscription::class) -> wherePaymentStatus('paid') -> latest();
+    }
+
 }

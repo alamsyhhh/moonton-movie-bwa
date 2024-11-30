@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Middleware\PermissionMiddleware as MiddlewarePermissionMiddleware;
 use Spatie\Permission\Middleware\RoleMiddleware as MiddlewareRoleMiddleware;
 use Spatie\Permission\Middleware\RoleOrPermissionMiddleware as MiddlewareRoleOrPermissionMiddleware;
+use App\Http\Middleware\CheckUserSubscription; 
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         app('router')->aliasMiddleware('role', MiddlewareRoleMiddleware::class);
         app('router')->aliasMiddleware('permission', MiddlewarePermissionMiddleware::class);
         app('router')->aliasMiddleware('role_or_permission', MiddlewareRoleOrPermissionMiddleware::class);
+
+        app('router')->aliasMiddleware('checkUserSubscription', CheckUserSubscription::class);
     }
 }

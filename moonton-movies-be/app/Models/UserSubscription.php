@@ -21,8 +21,9 @@ class UserSubscription extends Model
         'snap_token',
     ];
 
-    public function subcriptionPlan(): BelongsTo
-    {
-        return $this->belongsTo(SubscriptionPlan::class);
-    }
+  public function subscriptionPlan(): BelongsTo
+  {
+    return $this->belongsTo(SubscriptionPlan::class);
+  }
+
 }

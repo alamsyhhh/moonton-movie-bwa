@@ -36,7 +36,7 @@ export default function Topbar({ name }) {
                     {/* user avatar */}
                     <div className="collapsible-dropdown relative flex flex-col gap-2">
                         <div
-                            className="outline-gray-2 dropdown-button w-[60px] rounded-full p-[5px] outline outline-2"
+                            className="dropdown-button w-[60px] rounded-full p-[5px] outline outline-2 outline-gray-2"
                             onClick={triggerDropdwon}
                         >
                             <img
@@ -63,7 +63,7 @@ export default function Topbar({ name }) {
                             </a>
                             <Link
                                 href={route('logout')}
-                                method='post'
+                                method="post"
                                 className="p-4 transition-all hover:bg-sky-100"
                             >
                                 Sign Out
