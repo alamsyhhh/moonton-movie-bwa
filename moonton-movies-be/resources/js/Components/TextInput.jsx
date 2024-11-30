@@ -30,9 +30,12 @@ const TextInput = forwardRef(function (
         <input
             {...props}
             type={type}
-            className={`w-full rounded-2xl bg-form-bg px-7 focus:outline-alerange ${isError && 'input-error'} input-${variant} ${
-                className
-            }`}
+            // className={`w-full rounded-2xl bg-form-bg px-7 focus:outline-alerange ${isError && 'input-error'} input-${variant} ${
+            //     className
+            // }`}
+            className={`w-full rounded-2xl bg-form-bg px-7 focus:outline-alerange ${
+                isError ? 'input-error' : ''
+            } ${variant === 'primary-outline' ? 'border border-alerange bg-white text-black' : ''} input-${variant} ${className}`}
             ref={localRef}
             defaultValue={defaultValue}
             placeholder={placeholder}

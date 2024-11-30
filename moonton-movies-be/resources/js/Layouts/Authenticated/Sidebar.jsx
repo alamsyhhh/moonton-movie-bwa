@@ -3,7 +3,7 @@ import MenuItem from './MenuItem';
 import { UserMenu, UserOthers } from './MenuList';
 
 export default function Sidebar({ auth }) {
-    console.log(auth);
+    // console.log(auth);
     return (
         <>
             <aside className="fixed z-50 h-full w-[300px]">

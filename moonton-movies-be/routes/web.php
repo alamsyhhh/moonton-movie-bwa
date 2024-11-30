@@ -8,6 +8,7 @@ use App\Http\Controllers\User\DashboardController;
 use App\Models\Movie;
 use App\Http\Controllers\User\MovieController;
 use App\Http\Controllers\User\SubcriptionPlanController;
+use App\Http\Controllers\Admin\MovieController as AdminMovieController;
 
 // Route::get('admin', function () {
 //    return 'Hi Admin';
@@ -41,6 +42,18 @@ Route::middleware('auth', 'role:user')->prefix('dashboard')->name('user.dashboar
     
     Route::post('subcription-plan/{subscriptionPlan}/user-subscribe}', [SubcriptionPlanController::class, 'userSubscribe'])->name('subscriptionPlan.userSubscribe')->middleware('checkUserSubscription:false');
 });
+
+Route::middleware('auth', 'role:admin')->prefix('admin')->name('admin.dashboard.')-> group(function () {
+    Route::resource('movie', AdminMovieController::class);
+});
+
+// Route::middleware(['auth', 'role:admin'])
+//     ->prefix('admin')
+//     ->name('admin.dashboard.')
+//     ->group(function () {
+//         Route::resource('movie', AdminMovieController::class);
+// });
+
 
 Route::prefix('prototype')->name('prototype.')->group(function () {
     Route::get('/login' , function () {

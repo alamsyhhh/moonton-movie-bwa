@@ -1,5 +1,5 @@
 .input-primary {
-    @apply focus:bg-form-bg bg-form-bg focus:outline-alerange focus:outline-none;
+    @apply bg-form-bg focus:bg-form-bg focus:outline-none focus:outline-alerange;
 }
 
 .input-error {
@@ -7,6 +7,11 @@
 }
 
 .input-primary-outline {
-    @apply border-alerange focus:border-alerange bg-[#fff] focus:bg-[#fff];
-    @apply file:bg-alerange file:rounded-md file:p-2 file:text-white;
+    @apply border-alerange bg-[#fff] focus:border-alerange focus:bg-[#fff];
+    @apply file:rounded-md file:bg-alerange file:p-2 file:text-white;
+}
+
+input[type='file'] {
+    border: none;
+    background: transparent;
 }

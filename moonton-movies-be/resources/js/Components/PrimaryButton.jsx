@@ -9,12 +9,16 @@ const PrimaryButton = function PrimaryButton({
     children,
     ...props
 }) {
+    const hasCustomWidth = className.includes('w-');
+
     return (
         <button
             {...props}
             type={type}
-            className={`w-full rounded-2xl py-[13px] text-center ${processing && 'opacity-30'} btn-${variant} ${className}`}
-            disabled={disabled || processing} // Disable button if processing
+            className={`rounded-2xl py-[13px] text-center ${processing ? 'opacity-30' : ''} btn-${variant} ${
+                hasCustomWidth ? '' : 'w-full'
+            } ${className}`}
+            disabled={disabled || processing}
         >
             {children}
         </button>
