@@ -22,7 +22,7 @@ export default function FeaturedMovie({
             <div className="group absolute mr-[30px] overflow-hidden">
                 {/* Movie Thumbnail */}
                 <img
-                    src={thumbnail}
+                    src={`/storage/${thumbnail}`}
                     className="h-[340px] w-[520px] rounded-[30px] object-cover"
                     alt=""
                 />

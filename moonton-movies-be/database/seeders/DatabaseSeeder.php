@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
           $this->call(
             SubcriptionPlanTableSeeder::class
         );
-          $this->call(
-            MovieTableSeeder::class
-        );
+        //   $this->call(
+        //     MovieTableSeeder::class
+        // );
     }
 }
