@@ -1,14 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\MovieController as AdminMovieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\MovieController;
+use App\Http\Controllers\User\SubcriptionPlanController;
+use App\Models\Movie;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\User\DashboardController;
-use App\Models\Movie;
-use App\Http\Controllers\User\MovieController;
-use App\Http\Controllers\User\SubcriptionPlanController;
-use App\Http\Controllers\Admin\MovieController as AdminMovieController;
 
 // Route::get('admin', function () {
 //    return 'Hi Admin';
@@ -33,19 +33,18 @@ Route::redirect('/', '/login');
 //     return Inertia::render('User/Dashboard/Index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth', 'role:user')->prefix('dashboard')->name('user.dashboard.')-> group(function () {
-    Route::get('/' , [DashboardController::class, 'index'])->name('index');
+Route::middleware(['auth', 'role:user'])->prefix('dashboard')->name('user.dashboard.')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-    Route::get('/movie/{movie:slug}', [MovieController::class, 'show'])->name('movie.show')->middleware('checkUserSubscription:true');
+    Route::get('movie/{movie:slug}', [MovieController::class, 'show'])->name('movie.show')->middleware('checkUserSubscription:true');
 
-    Route::get('subcription-plan', [SubcriptionPlanController::class, 'index'])->name('subscriptionPlan.index')->middleware('checkUserSubscription:false');
-    
-    Route::post('subcription-plan/{subscriptionPlan}/user-subscribe}', [SubcriptionPlanController::class, 'userSubscribe'])->name('subscriptionPlan.userSubscribe')->middleware('checkUserSubscription:false');
+    Route::get('subscription-plan', [SubcriptionPlanController::class, 'index'])->name('subscriptionPlan.index')->middleware('checkUserSubscription:false');
+    Route::post('subscription-plan/{subscriptionPlan}/user-subscribe', [SubcriptionPlanController::class, 'userSubscribe'])->name('subscriptionPlan.userSubscribe')->middleware('checkUserSubscription:false');
 });
 
-Route::middleware('auth', 'role:admin')->prefix('admin')->name('admin.dashboard.')-> group(function () {
+Route::middleware('auth', 'role:admin')->prefix('admin')->name('admin.dashboard.')->group(function () {
     Route::put('movie/{movie}/restore', [AdminMovieController::class, 'restore'])->name('movie.restore');
-    
+
     Route::resource('movie', AdminMovieController::class);
 });
 
@@ -56,25 +55,24 @@ Route::middleware('auth', 'role:admin')->prefix('admin')->name('admin.dashboard.
 //         Route::resource('movie', AdminMovieController::class);
 // });
 
-
 Route::prefix('prototype')->name('prototype.')->group(function () {
-    Route::get('/login' , function () {
+    Route::get('/login', function () {
         return Inertia::render('Prototype/Login');
     })->name('login');
 
-    Route::get('/register' , function () {
+    Route::get('/register', function () {
         return Inertia::render('Prototype/Register');
     })->name('register');
 
-    Route::get('/dashboard' , function () {
+    Route::get('/dashboard', function () {
         return Inertia::render('Prototype/Dashboard');
     })->name('dashboard');
 
-     Route::get('/subcriptionPlan' , function () {
+    Route::get('/subcriptionPlan', function () {
         return Inertia::render('Prototype/SubcriptionPlan');
     })->name('subcriptionPlan');
 
-    Route::get('/movie/{slug}' , function () {
+    Route::get('/movie/{slug}', function () {
         return Inertia::render('Prototype/Movie/Show');
     })->name('movie.show');
 });
